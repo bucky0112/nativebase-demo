@@ -12,7 +12,7 @@ import {
 } from 'native-base'
 import { MaterialIcons } from '@expo/vector-icons'
 import { setToken, AppDispatch, RootState } from '@Stores/index'
-import { API_URL } from "@env"
+import { LOGIN_URL } from '@Api/index'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -24,7 +24,6 @@ const Login = () => {
 
   const handleLogin = useCallback(async () => {
     try {
-      const url = API_URL
       const headers = {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json;charset=utf-8',
@@ -40,7 +39,7 @@ const Login = () => {
         captchaBypass
       })
 
-      const response = await fetch(url, { method: 'POST', headers, body })
+      const response = await fetch(LOGIN_URL, { method: 'POST', headers, body })
 
       if (!response.ok) {
         throw new Error('Login failed')
