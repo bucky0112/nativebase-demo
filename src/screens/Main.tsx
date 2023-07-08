@@ -25,7 +25,7 @@ const Main: FC<MainProps> = ({ title }) => {
   }
 
   return (
-    <VStack flex={1} safeArea>
+    <VStack flex={1} safeArea bg="mainBackground">
       <Heading>{title.toUpperCase()}</Heading>
       <View flex={1}>{screenComponents[selected]}</View>
       <BottomNavigator selected={selected} setSelected={setSelected} />
