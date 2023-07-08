@@ -6,7 +6,7 @@ import Main from '@Screens/Main'
 const Root = () => {
   const token = useSelector((state: RootState) => state.auth.token)
 
-  return token ? <Main /> : <Login />
+  return token ? <Main title="Markets" /> : <Login />
 }
 
 export default Root
