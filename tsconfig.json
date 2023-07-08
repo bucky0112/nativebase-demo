@@ -20,7 +20,8 @@
       "@Screens/*": ["src/screens/*"],
       "@Stores/*": ["src/stores/*"],
       "@Assets/*": ["assets/*"]
-    }
+    },
+    "typeRoots": ["./src/types"]
   },
   "exclude": ["node_modules"]
 }
