@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Stack, Text } from 'native-base'
-import { setTitles, AppDispatch } from '@Stores/index'
-import { MARKETS_URL } from '@Api/index'
-import { Headers } from "../Markets"
+import { Stack } from 'native-base'
+import { setTitles, setSummaries, AppDispatch } from '@Stores/index'
+import { MARKETS_URL, SUMMARIES_URL } from '@Api/index'
+import { Headers, Summaries } from "../Markets"
 
 const Markets = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -32,14 +32,37 @@ const Markets = () => {
     }
   }
 
+  const fetchSummaries = async () => {
+    try {
+      const headers = {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json;charset=utf-8',
+        'user-agent': 'Android;1.15.0',
+        'TOK-DEVICE-ID': 'ea278b7741967a5e'
+      }
+
+      const response = await fetch(SUMMARIES_URL, { method: 'GET', headers })
+
+      if (!response.ok) {
+        throw new Error('Login failed')
+      }
+
+      const data = await response.json()
+      dispatch(setSummaries(data?.data))
+    } catch (error) {
+      console.error('Failed to login:', error)
+    }
+  }
+
   useEffect(() => {
     fetchMarkets()
+    fetchSummaries()
   }, [])
 
   return (
     <Stack>
       <Headers selected={selectedHeader} atClick={setSelectedHeader} />
-      <Text>Markets</Text>
+      <Summaries />
     </Stack>
   )
 }

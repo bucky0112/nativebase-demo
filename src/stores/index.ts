@@ -6,6 +6,7 @@ interface AuthState {
 
 interface MarketState {
   titles: string[]
+  summaries: any[]
 }
 
 const initialState: AuthState = {
@@ -13,7 +14,8 @@ const initialState: AuthState = {
 }
 
 const initialMarketState: MarketState = {
-  titles: []
+  titles: [],
+  summaries: []
 }
 
 const authSlice = createSlice({
@@ -32,17 +34,20 @@ const marketSlice = createSlice({
   reducers: {
     setTitles: (state, action: PayloadAction<string[]>) => {
       state.titles = action.payload
+    },
+    setSummaries: (state, action: PayloadAction<any[]>) => {
+      state.summaries = action.payload
     }
   }
 })
 
 export const { setToken } = authSlice.actions
-export const { setTitles } = marketSlice.actions
+export const { setTitles, setSummaries } = marketSlice.actions
 
 const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
-    market: marketSlice.reducer,
+    market: marketSlice.reducer
   }
 })
 
