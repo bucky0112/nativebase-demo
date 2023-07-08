@@ -12,6 +12,7 @@ const newColorTheme = {
     500: '#e4e9f9',
     600: '#6992ff',
   },
+  mainBackground: '#f7f8fd',
 };
 
 // extend the theme
