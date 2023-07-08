@@ -7,14 +7,15 @@ import {
 import store from '@Stores/index'
 import Root from '@Components/Root'
 
-// Define the config
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: 'dark'
-}
+const newColorTheme = {
+  buttonBlue: {
+    500: '#e4e9f9',
+    600: '#6992ff',
+  },
+};
 
 // extend the theme
-export const theme = extendTheme({ config })
+export const theme = extendTheme({ colors: newColorTheme })
 type MyThemeType = typeof theme
 declare module 'native-base' {
   interface ICustomTheme extends MyThemeType {}
@@ -22,7 +23,7 @@ declare module 'native-base' {
 export default function App() {
   return (
     <Provider store={store}>
-      <NativeBaseProvider>
+      <NativeBaseProvider theme={theme}>
         <Root />
       </NativeBaseProvider>
     </Provider>
