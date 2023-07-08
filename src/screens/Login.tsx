@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
   Input,
   Icon,
@@ -11,14 +11,12 @@ import {
   Text
 } from 'native-base'
 import { MaterialIcons } from '@expo/vector-icons'
-import { setToken, AppDispatch, RootState } from '@Stores/index'
+import { setToken, AppDispatch } from '@Stores/index'
 import { LOGIN_URL } from '@Api/index'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const token = useSelector((state: RootState) => state.auth.token)
-  console.log('token', token)
 
   const dispatch = useDispatch<AppDispatch>()
 
