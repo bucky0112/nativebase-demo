@@ -42,7 +42,7 @@ const BottomNavigator: FC<BottomNavigatorProps> = ({
       >
         <Center>
           <Markets width={24} height={24} />
-          <Text color='tabText' fontWeight='500'>
+          <Text color={selected === 'Markets' ? 'clickTabText' : 'tabText'} fontWeight='500'>
             Markets
           </Text>
         </Center>
