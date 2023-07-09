@@ -11,7 +11,9 @@ const newColorTheme = {
   },
   mainBackground: '#f7f8fd',
   mainText: '#3d436c',
-  subText: '#8e92b2'
+  subText: '#8e92b2',
+  tabText: '#9194bb',
+  clickTabText: '#597af4'
 }
 
 // extend the theme

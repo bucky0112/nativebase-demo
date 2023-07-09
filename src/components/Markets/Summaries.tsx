@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Pressable, Text, FlatList, Image, HStack, VStack } from 'native-base'
+import { AntDesign } from '@expo/vector-icons'
 import { RootState } from '@Stores/index'
 import { IMAGE_URL } from '@env'
 
@@ -18,7 +19,10 @@ const Summaries = () => {
           ((lastPrice - openPrice) / openPrice) * 100
         const priceChangeColor =
           priceChangePercentage >= 0 ? 'green.500' : 'red.500'
+        const iconChangeColor =
+          priceChangePercentage >= 0 ? 'green' : 'red'
         const priceChangeSymbol = priceChangePercentage > 0 ? '+' : ''
+        const iconName = priceChangePercentage >= 0 ? 'arrowup' : 'arrowdown'
 
         return (
           <Pressable
@@ -41,7 +45,9 @@ const Summaries = () => {
                 height={10}
                 width={10}
               />
-              <Text color='mainText' fontWeight='700'>{currencyName}</Text>
+              <Text color='mainText' fontWeight='700'>
+                {currencyName}
+              </Text>
             </HStack>
 
             <VStack alignItems='flex-end'>
@@ -49,9 +55,12 @@ const Summaries = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
               })}`}</Text>
-              <Text fontSize='sm' fontWeight='500' color={priceChangeColor}>
-                {`${priceChangeSymbol}${priceChangePercentage.toFixed(2)}%`}
-              </Text>
+              <HStack alignItems='center'>
+                <Text fontSize='sm' fontWeight='500' color={priceChangeColor}>
+                  {`${priceChangeSymbol}${priceChangePercentage.toFixed(2)}%`}
+                </Text>
+                <AntDesign name={iconName} size={10} color={iconChangeColor} />
+              </HStack>
             </VStack>
           </Pressable>
         )
