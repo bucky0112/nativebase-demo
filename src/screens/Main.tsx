@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
-import { Heading, View, VStack } from 'native-base'
+import { Heading, View, VStack, HStack, Icon } from 'native-base'
+import { Feather } from '@expo/vector-icons'
 import {
   Home,
   Markets,
@@ -25,8 +26,13 @@ const Main: FC<MainProps> = ({ title }) => {
   }
 
   return (
-    <VStack flex={1} safeArea bg="mainBackground">
-      <Heading>{title.toUpperCase()}</Heading>
+    <VStack flex={1} safeArea bg='mainBackground'>
+      <HStack justifyContent='space-between' pl='7' pr='3' my='5'>
+        <Heading color='mainText' fontSize='lg' fontWeight='700'>
+          {title.toUpperCase()}
+        </Heading>
+        <Icon as={Feather} name='search' size='6' color='mainText' />
+      </HStack>
       <View flex={1}>{screenComponents[selected]}</View>
       <BottomNavigator selected={selected} setSelected={setSelected} />
     </VStack>
