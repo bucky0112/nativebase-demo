@@ -19,12 +19,10 @@ const Markets = () => {
       }
 
       const response = await fetch(MARKETS_URL, { method: 'GET', headers })
-
-      if (!response.ok) {
+      const data = await response.json()
+      if (data.status !== 'success') {
         throw new Error('Login failed')
       }
-
-      const data = await response.json()
       const titles = data?.data?.map((item: any) => item?.title)
       dispatch(setTitles(titles))
     } catch (error) {
@@ -42,12 +40,11 @@ const Markets = () => {
       }
 
       const response = await fetch(SUMMARIES_URL, { method: 'GET', headers })
-
-      if (!response.ok) {
+      const data = await response.json()
+      if (data.status !== 'success') {
         throw new Error('Login failed')
       }
-
-      const data = await response.json()
+      
       dispatch(setSummaries(data?.data))
     } catch (error) {
       console.error('Failed to login:', error)
