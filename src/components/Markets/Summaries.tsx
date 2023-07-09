@@ -1,15 +1,23 @@
+import { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { Pressable, Text, FlatList, Image, HStack, VStack } from 'native-base'
 import { AntDesign } from '@expo/vector-icons'
 import { RootState } from '@Stores/index'
 import { IMAGE_URL } from '@env'
 
-const Summaries = () => {
+interface SummariesProps {
+  onRefresh: () => void
+  isRefreshing: boolean
+}
+
+const Summaries: FC<SummariesProps> = ({ onRefresh, isRefreshing }) => {
   const summaries = useSelector((state: RootState) => state.market.summaries)
 
   return (
     <FlatList
       data={summaries}
+      onRefresh={onRefresh}
+      refreshing={isRefreshing}
       renderItem={({ item }) => {
         const currencyName = item?.market.split('-')[1]
         const imageUrl = `${IMAGE_URL}${currencyName.toLowerCase()}.png`
@@ -19,8 +27,7 @@ const Summaries = () => {
           ((lastPrice - openPrice) / openPrice) * 100
         const priceChangeColor =
           priceChangePercentage >= 0 ? 'green.500' : 'red.500'
-        const iconChangeColor =
-          priceChangePercentage >= 0 ? 'green' : 'red'
+        const iconChangeColor = priceChangePercentage >= 0 ? 'green' : 'red'
         const priceChangeSymbol = priceChangePercentage > 0 ? '+' : ''
         const iconName = priceChangePercentage >= 0 ? 'arrowup' : 'arrowdown'
 

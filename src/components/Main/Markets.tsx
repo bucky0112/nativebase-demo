@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux'
 import { Stack } from 'native-base'
 import { setTitles, setSummaries, AppDispatch } from '@Stores/index'
 import { MARKETS_URL, SUMMARIES_URL } from '@Api/index'
-import { Headers, Summaries } from "@Components/Markets"
+import { Headers, Summaries } from '@Components/Markets'
 
 const Markets = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const [selectedHeader, setSelectedHeader] = useState<string>("BTC")
+  const [selectedHeader, setSelectedHeader] = useState<string>('BTC')
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
 
   const fetchMarkets = async () => {
     try {
@@ -31,6 +32,7 @@ const Markets = () => {
   }
 
   const fetchSummaries = async () => {
+    setIsRefreshing(true)
     try {
       const headers = {
         Accept: 'application/json, text/plain, */*',
@@ -44,11 +46,17 @@ const Markets = () => {
       if (data.status !== 'success') {
         throw new Error('Login failed')
       }
-      
+
       dispatch(setSummaries(data?.data))
     } catch (error) {
       console.error('Failed to login:', error)
+    } finally {
+      setIsRefreshing(false)
     }
+  }
+
+  const onRefresh = () => {
+    fetchSummaries()
   }
 
   useEffect(() => {
@@ -59,7 +67,7 @@ const Markets = () => {
   return (
     <Stack>
       <Headers selected={selectedHeader} atClick={setSelectedHeader} />
-      <Summaries />
+      <Summaries onRefresh={onRefresh} isRefreshing={isRefreshing} />
     </Stack>
   )
 }
