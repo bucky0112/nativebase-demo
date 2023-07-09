@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { HStack, Pressable, Center, Icon, Text } from 'native-base'
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+import { HStack, Pressable, Center, Text } from 'native-base'
+import { Home, Markets, Wallets, Portfolio, More } from '@Components/Icons'
 
 type ScreenNames = 'Home' | 'Markets' | 'Wallets' | 'Portfolio'
 
@@ -15,11 +15,11 @@ const BottomNavigator: FC<BottomNavigatorProps> = ({
 }) => {
   return (
     <HStack
-      bg='indigo.600'
+      bg='white'
       alignItems='center'
       justifyContent='space-between'
       safeAreaBottom
-      shadow={6}
+      shadow={3}
     >
       <Pressable
         opacity={selected === 'Home' ? 1 : 0.5}
@@ -28,17 +28,8 @@ const BottomNavigator: FC<BottomNavigatorProps> = ({
         onPress={() => setSelected('Home')}
       >
         <Center>
-          <Icon
-            mb='1'
-            as={
-              <MaterialCommunityIcons
-                name={selected === 'Home' ? 'home' : 'home-outline'}
-              />
-            }
-            color='white'
-            size='sm'
-          />
-          <Text color='white' fontSize='12'>
+          <Home width={24} height={24} />
+          <Text color='tabText' fontWeight='500'>
             Home
           </Text>
         </Center>
@@ -50,13 +41,8 @@ const BottomNavigator: FC<BottomNavigatorProps> = ({
         onPress={() => setSelected('Markets')}
       >
         <Center>
-          <Icon
-            mb='1'
-            as={<MaterialIcons name='search' />}
-            color='white'
-            size='sm'
-          />
-          <Text color='white' fontSize='12'>
+          <Markets width={24} height={24} />
+          <Text color='tabText' fontWeight='500'>
             Markets
           </Text>
         </Center>
@@ -68,17 +54,8 @@ const BottomNavigator: FC<BottomNavigatorProps> = ({
         onPress={() => setSelected('Wallets')}
       >
         <Center>
-          <Icon
-            mb='1'
-            as={
-              <MaterialCommunityIcons
-                name={selected === 'Wallets' ? 'cart' : 'cart-outline'}
-              />
-            }
-            color='white'
-            size='sm'
-          />
-          <Text color='white' fontSize='12'>
+          <Wallets width={24} height={24} />
+          <Text color='tabText' fontWeight='500'>
             Wallets
           </Text>
         </Center>
@@ -90,18 +67,22 @@ const BottomNavigator: FC<BottomNavigatorProps> = ({
         onPress={() => setSelected('Portfolio')}
       >
         <Center>
-          <Icon
-            mb='1'
-            as={
-              <MaterialCommunityIcons
-                name={selected === 'Portfolio' ? 'account' : 'account-outline'}
-              />
-            }
-            color='white'
-            size='sm'
-          />
-          <Text color='white' fontSize='12'>
+          <Portfolio width={24} height={24} />
+          <Text color='tabText' fontWeight='500'>
             Portfolio
+          </Text>
+        </Center>
+      </Pressable>
+      <Pressable
+        opacity={selected === 'Portfolio' ? 1 : 0.5}
+        py='2'
+        flex={1}
+        onPress={() => {}}
+      >
+        <Center>
+          <More width={24} height={24} />
+          <Text color='tabText' fontWeight='500'>
+            More
           </Text>
         </Center>
       </Pressable>

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Stack } from 'native-base'
 import { setTitles, setSummaries, AppDispatch } from '@Stores/index'
 import { MARKETS_URL, SUMMARIES_URL } from '@Api/index'
-import { Headers, Summaries } from "../Markets"
+import { Headers, Summaries } from "@Components/Markets"
 
 const Markets = () => {
   const dispatch = useDispatch<AppDispatch>()
