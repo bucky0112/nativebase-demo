@@ -7,7 +7,7 @@ import {
   Wallets,
   Portfolio,
   BottomNavigator
-} from '@Components/components/Main'
+} from '@Components/Main'
 
 type ScreenNames = 'Home' | 'Markets' | 'Wallets' | 'Portfolio'
 
