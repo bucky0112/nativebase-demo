@@ -1,0 +1,11 @@
+import Home from '@Assets/svg/home.svg'
+import Markets from '@Assets/svg/markets.svg'
+import Wallets from '@Assets/svg/wallets.svg'
+import Portfolio from '@Assets/svg/portfolio.svg'
+import More from '@Assets/svg/more.svg'
+
+export { default as Home } from '@Assets/svg/home.svg'
+export { default as Markets } from '@Assets/svg/markets.svg'
+export { default as Wallets } from '@Assets/svg/wallets.svg'
+export { default as Portfolio } from '@Assets/svg/portfolio.svg'
+export { default as More } from '@Assets/svg/more.svg'
