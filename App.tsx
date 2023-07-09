@@ -13,7 +13,9 @@ const newColorTheme = {
   mainText: '#3d436c',
   subText: '#8e92b2',
   tabText: '#9194bb',
-  clickTabText: '#597af4'
+  clickTabText: '#597af4',
+  signinBtnBg: '#bdcfff',
+  signinBtnText: '#5073f2'
 }
 
 // extend the theme
