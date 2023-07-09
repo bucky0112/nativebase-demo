@@ -12,7 +12,7 @@ const Headers: FC<HeadersProps> = ({ selected, atClick }) => {
   const titles = useSelector((state: RootState) => state.market.titles)
 
   return (
-    <HStack px="3" justifyContent="space-between">
+    <HStack px="3" mb='2' justifyContent="space-between">
       {titles?.map((title: string) => (
         <Pressable
           w={`${(100 / titles.length) - 2}%`}
@@ -24,7 +24,7 @@ const Headers: FC<HeadersProps> = ({ selected, atClick }) => {
           onPress={() => atClick(title)}
         >
           <Center>
-            <Text >{title}</Text>
+            <Text fontWeight='500' color={selected === title ? 'white' : 'subText'}>{title}</Text>
           </Center>
         </Pressable>
       ))}
