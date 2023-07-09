@@ -2,17 +2,17 @@ import { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   Input,
-  Icon,
   Stack,
-  Center,
+  Flex,
   Checkbox,
   Link,
   Button,
-  Text
+  Text,
 } from 'native-base'
-import { MaterialIcons } from '@expo/vector-icons'
 import { setToken, AppDispatch } from '@Stores/index'
 import { LOGIN_URL } from '@Api/index'
+import Background from '@Assets/svg/login-bg.svg'
+import { Logo, Email, Password, Eye } from '@Components/Icons'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -51,61 +51,116 @@ const Login = () => {
   }, [email, password])
 
   return (
-    <Center flex={1}>
-      <Stack space={4} w='95%' alignItems='center'>
-        <Input
-          value={email}
-          onChangeText={setEmail}
-          InputLeftElement={
-            <Icon
-              as={<MaterialIcons name='person' />}
-              size={5}
-              ml='2'
-              color='muted.400'
-            />
-          }
-          placeholder='Email'
-        />
+    <Flex flex={1} justifyContent='space-between' alignItems='center'>
+      <Background
+        style={{ position: 'absolute', width: '100%', height: '100%' }}
+      />
+      <Flex flex={1} justifyContent='flex-end' alignItems='center'>
+        <Logo />
+        <Text fontSize='2xl' fontWeight='bold' color='white' mt='5' mb='2'>
+          Sign in
+        </Text>
+        <Text fontSize='lg' color='white'>
+          Please sign in to continue
+        </Text>
+      </Flex>
+      <Flex flex={1} justifyContent='center' my={4}>
+        <Stack space={4} w='95%' alignItems='center'>
+          <Input
+            value={email}
+            onChangeText={setEmail}
+            InputLeftElement={
+              <Email style={{ marginLeft: 10, marginTop: 4 }} />
+            }
+            placeholder='Email'
+            type='email'
+            alignItems='center'
+            py='3'
+            backgroundColor='rgba(255, 255, 255, 0.1)'
+            placeholderTextColor='#d6e1ff'
+            _focus={{
+              borderColor: 'white',
+              color: 'white'
+            }}
+            fontSize={16}
+            fontWeight={600}
+          />
 
-        <Input
-          value={password}
-          onChangeText={setPassword}
-          InputLeftElement={
-            <Icon
-              as={<MaterialIcons name='lock' />}
-              size={5}
-              ml='2'
-              color='muted.400'
-            />
-          }
-          placeholder='Password'
-          type='password'
-        />
-      </Stack>
-      <Stack
-        direction='row'
-        w='95%'
-        justifyContent='space-between'
-        alignItems='center'
-      >
-        <Checkbox value='remember' my='2' mx='4'>
-          Remember me
-        </Checkbox>
-        <Link isUnderlined={false}>Forgot your Password?</Link>
-      </Stack>
-      <Button onPress={handleLogin} w='95%' mx='2' my='2' colorScheme='primary'>
-        SIGN IN
-      </Button>
-      <Stack
-        direction='row'
-        w='95%'
-        justifyContent='center'
-        alignItems='center'
-      >
-        <Text>Don't have an account yet?</Text>
-        <Link isUnderlined={false}>SIGN UP</Link>
-      </Stack>
-    </Center>
+          <Input
+            value={password}
+            onChangeText={setPassword}
+            InputLeftElement={<Password style={{ marginLeft: 10 }} />}
+            InputRightElement={<Eye style={{ marginRight: 10 }} />}
+            placeholder='Password'
+            type='password'
+            py='3'
+            backgroundColor='rgba(255, 255, 255, 0.1)'
+            placeholderTextColor='#d6e1ff'
+            _focus={{
+              borderColor: 'white',
+              color: 'white'
+            }}
+            fontSize={16}
+            fontWeight={600}
+          />
+
+          <Stack
+            direction='row'
+            w='100%'
+            justifyContent='space-between'
+            alignItems='center'
+          >
+            <Flex direction='row' alignItems='center'>
+              <Checkbox
+                value='remember'
+                my='2'
+                mx='4'
+                _text={{ color: 'white' }}
+                backgroundColor='rgba(255, 255, 255, 0.1)'
+                borderColor='rgba(255, 255, 255, 0.2)'
+              />
+              <Text color='white' ml={-2} fontWeight='bold'>Remember me</Text>
+            </Flex>
+            <Link
+              isUnderlined={false}
+              _text={{ color: 'white', fontWeight: 'bold' }}
+              mr={-2}
+            >
+              Forgot your Password?
+            </Link>
+          </Stack>
+        </Stack>
+      </Flex>
+      <Flex flex={1} justifyContent='flex-start' w='100%'>
+        <Button
+          onPress={handleLogin}
+          mx='2'
+          mt='4'
+          py='3'
+          bgColor='signinBtnBg'
+          _text={{ color: 'signinBtnText', fontSize: 'md', fontWeight: 'bold' }}
+        >
+          SIGN IN
+        </Button>
+        <Stack
+          direction='row'
+          w='95%'
+          justifyContent='center'
+          alignItems='center'
+          mt='4'
+        >
+          <Text color='white' pr='1'>
+            Don't have an account yet?
+          </Text>
+          <Link
+            isUnderlined={false}
+            _text={{ color: 'white', fontWeight: 'bold' }}
+          >
+            SIGN UP
+          </Link>
+        </Stack>
+      </Flex>
+    </Flex>
   )
 }
 
