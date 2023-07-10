@@ -1,5 +1,9 @@
 # Tokenize-Demo
-
+## Preview
+<div style="display: flex; justify-content: space-around;">
+<img src="https://github.com/bucky0112/nativebase-tailwind/assets/49245415/85858426-55d4-4c51-80dd-9001c5d7073f" alt="Image 1" style="width:45%;">
+<img src="https://github.com/bucky0112/nativebase-tailwind/assets/49245415/34b538c9-3a67-46c5-95d2-0ef37a3ae431" alt="Image 2" style="width:45%;">
+</div>
 ## Technology Stack
 
 - React Native
